@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Nexttag.Utils.Database\Nexttag.Utils.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="dbup-core" Version="4.5.0" />
+      <PackageReference Include="dbup-postgresql" Version="4.5.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+      <PackageReference Include="Npgsql" Version="6.0.3" />
+    </ItemGroup>
+
+</Project>
