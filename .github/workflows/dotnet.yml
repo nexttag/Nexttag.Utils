@@ -1,50 +1,52 @@
 name: Deploy Nuget Registry
 
+
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    outputs:
+    runs-on: ubuntu-latest    
+    outputs: 
       Version: ${{ steps.gitversion.outputs.SemVer }}
-      CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}
-  
+      CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }} 
+
   steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0 #fetch-depth is needed for GitVersion
+  - uses: actions/checkout@v2
+    with:
+      fetch-depth: 0 #fetch-depth is needed for GitVersion
+
    
-    #Install and calculate the new version with GitVersion  
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.7
-      with:
+#Install and calculate the new version with GitVersion  
+  - name: Install GitVersion
+    uses: gittools/actions/gitversion/setup@v0.9.7
+    with:
         versionSpec: 5.x
    
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v0.9.7
-      id: gitversion # step id used as reference for output values
+  - name: Determine Version
+    uses: gittools/actions/gitversion/execute@v0.9.7
+    id: gitversion # step id used as reference for output values
    
-    - name: Display GitVersion outputs
-      run: |
+  - name: Display GitVersion outputs
+    run: |
         echo "Version: ${{ steps.gitversion.outputs.SemVer }}"
         echo "CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"   
         
     #Build/pack the project
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
+  - name: Setup .NET
+    uses: actions/setup-dotnet@v2
+    with:
         dotnet-version: 5.0.x
     
-    - name: Build and Pack NuGet package
-      run: dotnet pack Authentication/Nexttag.Utils.Authentication/Nexttag.Utils.Authentication.csproj -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
+  - name: Build and Pack NuGet package
+    run: dotnet pack Authentication/Nexttag.Utils.Authentication/Nexttag.Utils.Authentication.csproj -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
     
-    - name: Upload NuGet package to GitHub
-      uses: actions/upload-artifact@v2
-      with:
+  - name: Upload NuGet package to GitHub
+    uses: actions/upload-artifact@v2
+    with:
         name: nugetPackage
         path: Authentication/Nexttag.Utils.Authentication/bin/Release/
     
