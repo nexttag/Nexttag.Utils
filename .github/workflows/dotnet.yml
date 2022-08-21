@@ -16,9 +16,22 @@ jobs:
         with:
           dotnet-version: '5.0.x'
           source-url: https://nuget.pkg.github.com/nexttag/index.json
+          filters: |
+            workflows:
+              - './Nexttag.Utils.Database/**'
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
 
+      - name: workflow tests
+        if: steps.filter.outputs.workflows == 'true'
+        run: echo "Change file"
+
+    # run only if not 'workflows' files were changed
+      - name: not workflow tests
+        if: steps.filter.outputs.workflows != 'true'
+        run: echo "NOT change file"
+      
       - name: Build with dotnet
         run: dotnet build ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
 
