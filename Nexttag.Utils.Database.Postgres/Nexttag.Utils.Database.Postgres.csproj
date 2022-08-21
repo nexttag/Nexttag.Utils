@@ -6,7 +6,7 @@
         <Authors>Jonathan Schenker</Authors>
         <Company>Nexttag</Company>
         <RepositoryUrl>https://github.com/nexttag/Nexttag.Utils</RepositoryUrl>
-        <PackageVersion>1.0.2</PackageVersion>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
