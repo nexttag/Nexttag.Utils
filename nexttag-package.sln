@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Application.Base", "Nexttag.Application.Base\Nexttag.Application.Base.csproj", "{5BDE1512-F0C8-4CF1-8BED-FEA766876545}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{168D36E1-DE58-4EE7-9630-0B96FB86A981}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{F9188DB3-DC83-4F63-903F-FA65C9CD4824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Database", "Nexttag.Database\Nexttag.Database.csproj", "{5F82194A-E9AC-42CC-AA70-AA16422CBD00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Database.Postgres", "Nexttag.Database.Postgres\Nexttag.Database.Postgres.csproj", "{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{C25A93EE-A60D-42B4-B482-C7CA4279FC35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Cache", "Nexttag.Cache\Nexttag.Cache.csproj", "{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Communication", "Communication", "{50E73B2B-EAE1-422A-947B-1B502FBC4A9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Communication", "Nexttag.Communication\Nexttag.Communication.csproj", "{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexttag.Communication.Email", "Nexttag.Communication.Email\Nexttag.Communication.Email.csproj", "{A521D6E0-9FF7-40F3-8852-F2599EC4C883}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BDE1512-F0C8-4CF1-8BED-FEA766876545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDE1512-F0C8-4CF1-8BED-FEA766876545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDE1512-F0C8-4CF1-8BED-FEA766876545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDE1512-F0C8-4CF1-8BED-FEA766876545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F82194A-E9AC-42CC-AA70-AA16422CBD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F82194A-E9AC-42CC-AA70-AA16422CBD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F82194A-E9AC-42CC-AA70-AA16422CBD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F82194A-E9AC-42CC-AA70-AA16422CBD00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A521D6E0-9FF7-40F3-8852-F2599EC4C883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A521D6E0-9FF7-40F3-8852-F2599EC4C883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A521D6E0-9FF7-40F3-8852-F2599EC4C883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A521D6E0-9FF7-40F3-8852-F2599EC4C883}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5BDE1512-F0C8-4CF1-8BED-FEA766876545} = {168D36E1-DE58-4EE7-9630-0B96FB86A981}
+		{5F82194A-E9AC-42CC-AA70-AA16422CBD00} = {F9188DB3-DC83-4F63-903F-FA65C9CD4824}
+		{F72427FA-0D14-4B19-AA5D-BD5D4477C8FC} = {F9188DB3-DC83-4F63-903F-FA65C9CD4824}
+		{DF22D4FB-E3FE-40F4-A438-7DD0786C1C8A} = {C25A93EE-A60D-42B4-B482-C7CA4279FC35}
+		{DC7F45D4-5F50-4783-B6B5-0EE5875BB9E7} = {50E73B2B-EAE1-422A-947B-1B502FBC4A9A}
+		{A521D6E0-9FF7-40F3-8852-F2599EC4C883} = {50E73B2B-EAE1-422A-947B-1B502FBC4A9A}
+	EndGlobalSection
+EndGlobal
