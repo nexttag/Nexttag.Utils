@@ -41,12 +41,13 @@ jobs:
           source-url: https://nuget.pkg.github.com/nexttag/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.Postgres.csproj
 
       - name: Build with dotnet
-        run: dotnet build ./Nexttag.Utils.Database.Postgres/Nexttag.Utils.Database.Postgres.csproj --configuration Release
+        run: dotnet build ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
 
       - name: Create the Package
-        run: dotnet pack ./Nexttag.Utils.Database.Postgres.csproj --configuration Release
+        run: dotnet pack ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
 
       - name: Publish
         run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
