@@ -27,4 +27,4 @@ jobs:
       run: dotnet pack --configuration Release
 
     - name: Publish
-      run: dotnet nuget push "bin/Release/*.nupkg" -k ${{ secrets.WORKFLOW_NUGET_AUTH }} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+      run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{ secrets.WORKFLOW_NUGET_AUTH }} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
