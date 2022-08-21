@@ -3,6 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Jonathan Schenker</Authors>
+        <Company>Nexttag</Company>
     </PropertyGroup>
 
     <ItemGroup>
