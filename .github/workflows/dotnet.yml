@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.Postgres.csproj
-  PATH_DATABASES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
+  PATH_DATABASE_POSTGRES: ./Nexttag.Database/Nexttag.Database.Postgres.csproj
+  PATH_DATABASES: ./Nexttag.Database/Nexttag.Database.csproj
 
 jobs:
     check-changes:
@@ -22,10 +22,10 @@ jobs:
         with:
           filters: |
            database:
-            - './Nexttag.Utils.Database/**'
+            - './Nexttag.Database/**'
 
            database-postgres:
-            - './Nexttag.Utils.Database.Postgres/**'
+            - './Nexttag.Database.Postgres/**'
             
       - name:  database-postgres tests change
         if: steps.filter.outputs.database-postgres == 'true'
@@ -57,18 +57,18 @@ jobs:
           source-url: https://nuget.pkg.github.com/nexttag/index.json
           filters: |
             workflows:
-              - './Nexttag.Utils.Database/**'
+              - './Nexttag.Database/**'
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
       - name: Build with dotnet
-        run: dotnet build ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
+        run: dotnet build ./Nexttag.Database/Nexttag.Database.csproj --configuration Release
 
       - name: Create the Package
-        run: dotnet pack ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
+        run: dotnet pack ./Nexttag.Database/Nexttag.Database.csproj --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
 
     build-and-deploy-database-postgres:
       runs-on: ubuntu-latest
@@ -92,4 +92,4 @@ jobs:
         run: dotnet pack ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
