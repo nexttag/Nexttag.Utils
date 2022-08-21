@@ -27,7 +27,7 @@ jobs:
     - name: Push no NuGet
       run: |
         cd out
-        dotnet nuget add source ${{ env.URL_NUGET }}  -n github -u JORDAOBASS -p PAT 
+        dotnet nuget add source ${{ env.URL_NUGET }}  -n github -u JORDAOBASS -p ${{ env.URL_NUGET }} 
 #        dotnet nuget push *.nupkg --api-key ${{ secrets.WORKFLOW_NUGET_AUTH }} --source ${{ env.URL_NUGET }} --skip-duplicate
         
         
