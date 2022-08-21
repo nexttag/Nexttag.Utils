@@ -27,12 +27,20 @@ jobs:
            database-postgres:
             - './Nexttag.Utils.Database.Postgres/**'
             
+      - name:  database-postgres tests change
+        if: steps.filter.outputs. database-postgres == 'true'
+        run: echo "Change file"
+
+      - name:  not  database-postgres change
+        if: steps.filter.outputs. database-postgres != 'true'
+        run: echo "NOT change file"
+        
       - name: Database tests change
-        if: steps.filter.outputs.workflows == 'true'
+        if: steps.filter.outputs. database == 'true'
         run: echo "Change file"
 
       - name:  not Database change
-        if: steps.filter.outputs.workflows != 'true'
+        if: steps.filter.outputs. database != 'true'
         run: echo "NOT change file"
 
     build-and-deploy-database:
