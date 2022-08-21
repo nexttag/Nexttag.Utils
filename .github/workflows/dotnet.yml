@@ -6,25 +6,47 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build-and-deploy-database:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@main
 
-    steps:
-    - uses: actions/checkout@main
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+          source-url: https://nuget.pkg.github.com/nexttag/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0.x'
-        source-url: https://nuget.pkg.github.com/nexttag/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: Build with dotnet
+        run: dotnet build ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
 
-    - name: Build with dotnet
-      run: dotnet build ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
+      - name: Create the Package
+        run: dotnet pack ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
 
-    - name: Create the Package
-      run: dotnet pack ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
+      - name: Publish
+        run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
 
-    - name: Publish
-      run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+    build-and-deploy-database-postgres:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@main
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.x'
+          source-url: https://nuget.pkg.github.com/nexttag/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build with dotnet
+        run: dotnet build ./Nexttag.Utils.Database.Postgres/Nexttag.Utils.Database.Postgres.csproj --configuration Release
+
+      - name: Create the Package
+        run: dotnet pack ./Nexttag.Utils.Database.Postgres.csproj --configuration Release
+
+      - name: Publish
+        run: dotnet nuget push "Nexttag.Utils.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
