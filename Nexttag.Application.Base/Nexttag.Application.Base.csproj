@@ -5,6 +5,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>Configuracoes minimas do projeto </Description>
+        <PackageProjectUrl>https://github.com/nexttag/Nexttag.Utils</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/nexttag/Nexttag.Utils</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
