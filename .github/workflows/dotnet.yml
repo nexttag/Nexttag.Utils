@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.Postgres.csproj
+  PATH_DATABASES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
+
 jobs:
     check-changes:
       runs-on: ubuntu-latest
@@ -47,7 +51,6 @@ jobs:
               - './Nexttag.Utils.Database/**'
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
       
       - name: Build with dotnet
         run: dotnet build ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj --configuration Release
@@ -72,8 +75,7 @@ jobs:
           source-url: https://nuget.pkg.github.com/nexttag/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.Postgres.csproj
-
+          
       - name: Build with dotnet
         run: dotnet build ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
 
