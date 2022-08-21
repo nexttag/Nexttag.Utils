@@ -46,7 +46,7 @@ jobs:
     build-and-deploy-database:
       runs-on: ubuntu-latest
       needs: check-changes
-      if: needs.paths-filter.outputs.database == 'true'
+      if: needs.check-changes.outputs.database == 'true'
       steps:
       - uses: actions/checkout@main
 
@@ -73,7 +73,7 @@ jobs:
     build-and-deploy-database-postgres:
       runs-on: ubuntu-latest
       needs: check-changes
-      if: needs.paths-filter.outputs.database-postgres == 'true'
+      if: needscheck-changes.outputs.database-postgres == 'true'
       steps:
       - uses: actions/checkout@main
 
