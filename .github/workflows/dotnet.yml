@@ -13,17 +13,17 @@ jobs:
     check-changes:
       runs-on: ubuntu-latest
       outputs:
-        output1: ${{ steps.filter1.outputs.database }}
-        output2: ${{ steps.filter2.outputs.database-postgres }}
+        output1: ${{ steps.filter.outputs.database }}
+        output2: ${{ steps.filter.outputs.database-postgres }}
       steps:
       - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters1: |
+          filters: |
            database:
             - './Nexttag.Utils.Database/**'
-          filters2: |
+
            database-postgres:
             - './Nexttag.Utils.Database.Postgres/**'
             
