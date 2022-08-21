@@ -5,6 +5,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jonathan Schenker</Authors>
         <Company>Nexttag</Company>
+        <RepositoryUrl>https://github.com/nexttag/Nexttag.Utils</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

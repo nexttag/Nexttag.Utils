@@ -7,6 +7,10 @@
         <Version>1.0.0</Version>
         <Authors>Jonathan Schenker</Authors>
         <Company>Nexttag</Company>
+        <RepositoryUrl>https://github.com/nexttag/Nexttag.Utils</RepositoryUrl>
+        <Title>Nexttag.Utils.Database</Title>
+        <Description>Facilitador para acesso ao banco</Description>
+        <PackageProjectUrl>https://github.com/nexttag/Nexttag.Utils</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>
