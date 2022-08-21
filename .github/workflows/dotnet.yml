@@ -73,7 +73,7 @@ jobs:
     build-and-deploy-database-postgres:
       runs-on: ubuntu-latest
       needs: check-changes
-      if: needscheck-changes.outputs.database-postgres == 'true'
+      if: needs.check-changes.outputs.database-postgres == 'true'
       steps:
       - uses: actions/checkout@main
 
