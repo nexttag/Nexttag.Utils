@@ -20,9 +20,6 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Add GitHub Packages Source
-      run: dotnet nuget add source https://nuget.pkg.github.com/nexttag/index.json -n github -u jordaobass  -p ${{secrets.WORKFLOW_NUGET_AUTH}} 
-
     - name: Build with dotnet
       run: dotnet build --configuration Release
 
