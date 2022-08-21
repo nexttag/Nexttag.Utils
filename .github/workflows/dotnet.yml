@@ -48,11 +48,6 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           source-url: https://nuget.pkg.github.com/nexttag/index.json
-          filters: |
-            workflows:
-              - './Nexttag.Database/**'
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
       - name: Build with dotnet
         run: dotnet build ${{env.PATH_DATABASE}} --configuration Release
@@ -75,8 +70,6 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           source-url: https://nuget.pkg.github.com/nexttag/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           
       - name: Build with dotnet
         run: dotnet build ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
@@ -90,7 +83,7 @@ jobs:
     build-and-deploy-application-base:
       runs-on: ubuntu-latest
       needs: check-changes
-      if: needs.check-changes.outputs.application-base == 'true'
+      if: needs.check-changes.outputs.output-application-base == 'true'
       steps:
         - uses: actions/checkout@main
 
@@ -99,8 +92,6 @@ jobs:
           with:
             dotnet-version: '6.0.x'
             source-url: https://nuget.pkg.github.com/nexttag/index.json
-          env:
-            NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
         - name: Build with dotnet
           run: dotnet build ${{env.PATH_APPLICATION_BASE}} --configuration Release
@@ -114,7 +105,7 @@ jobs:
     build-and-deploy-cache:
       runs-on: ubuntu-latest
       needs: check-changes
-      if: needs.check-changes.outputs.cache == 'true'
+      if: needs.check-changes.outputs.output-cache == 'true'
       steps:
         - uses: actions/checkout@main
 
@@ -123,8 +114,6 @@ jobs:
           with:
             dotnet-version: '6.0.x'
             source-url: https://nuget.pkg.github.com/nexttag/index.json
-          env:
-            NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
         - name: Build with dotnet
           run: dotnet build ${{env.PATH_CACHE}} --configuration Release
