@@ -1,33 +1,30 @@
-name: .NET 5 + Pack + Push no NuGet
+name: Build and deploy MeuPacote Package
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  pack-push:
-    env:
-      CAMINHO_PROJETO: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
-      URL_NUGET: https://nuget.pkg.github.com/nexttag/index.json
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET 5
+    - uses: actions/checkout@main
+
+    - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.101
+        dotnet-version: '5.0.x'
+        source-url: https://nuget.pkg.github.com/nexttag/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Geração do package
-      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -o out
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
 
-    - name: Push no NuGet
-      run: |
-        cd out
-        dotnet nuget add source ${{ env.URL_NUGET }}  -n github -u JORDAOBASS -p ${{ env.URL_NUGET }} 
-#        dotnet nuget push *.nupkg --api-key ${{ secrets.WORKFLOW_NUGET_AUTH }} --source ${{ env.URL_NUGET }} --skip-duplicate
-        
-        
+    - name: Create the Package
+      run: dotnet pack --configuration Release
+
+    - name: Publish
+      run: dotnet nuget push "bin/Release/*.nupkg" -k ${{ secrets.WORKFLOW_NUGET_AUTH }} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
