@@ -7,7 +7,7 @@ on:
 
 env:
   NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-  PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.Postgres.csproj
+  PATH_DATABASE_POSTGRES: ./Nexttag.Utils.Database.Postgres/Nexttag.Utils.Database.Postgres.csproj
   PATH_DATABASES: ./Nexttag.Utils.Database/Nexttag.Utils.Database.csproj
 
 jobs:
