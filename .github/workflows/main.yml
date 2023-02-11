@@ -12,6 +12,7 @@ env:
   PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
   PATH_AUTHENTICATION: ./Nexttag.Authentication/Nexttag.Authentication.csproj
   PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
+  WORKFLOW_KEY: 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
 
 jobs:
   check-changes:
@@ -71,7 +72,7 @@ jobs:
         run: dotnet pack ${{env.PATH_DATABASE}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Database/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Database/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
   
   build-and-deploy-database-postgres:
     runs-on: ubuntu-latest
@@ -95,7 +96,7 @@ jobs:
         run: dotnet pack ${{env.PATH_DATABASE_POSTGRES}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Database.Postgres/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Database.Postgres/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
   
   build-and-deploy-application-base:
     runs-on: ubuntu-latest
@@ -119,7 +120,7 @@ jobs:
         run: dotnet pack ${{env.PATH_APPLICATION_BASE}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Application.Base/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Application.Base/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
   
   build-and-deploy-cache:
     runs-on: ubuntu-latest
@@ -143,7 +144,8 @@ jobs:
         run: dotnet pack ${{env.PATH_CACHE}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Cache/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        #run: dotnet nuget push "Nexttag.Cache/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Cache/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
     
   build-and-deploy-authentication:
     runs-on: ubuntu-latest
@@ -167,7 +169,7 @@ jobs:
         run: dotnet pack ${{env.PATH_AUTHENTICATION}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k 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 -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
 
   build-and-deploy-authentication_jwt:
     runs-on: ubuntu-latest
@@ -191,4 +193,4 @@ jobs:
         run: dotnet pack ${{env.PATH_AUTHENTICATION_JWT}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Authentication.Jwt/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Authentication.Jwt/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
