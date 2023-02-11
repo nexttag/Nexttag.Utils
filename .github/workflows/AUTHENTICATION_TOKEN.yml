@@ -1,17 +1,11 @@
-name: Build and deploy  Package
+name: Build and deploy Package Authentication.Jwt
 
 on:
   push:
     branches:
       - main
-
 env:
-  PATH_DATABASE_POSTGRES: ./Nexttag.Database.Postgres/Nexttag.Database.Postgres.csproj
-  PATH_DATABASE: ./Nexttag.Database/Nexttag.Database.csproj
-  PATH_APPLICATION_BASE: ./Nexttag.Application.Base/Nexttag.Application.Base.csproj
-  PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
-  PATH_AUTHENTICATION: ./Nexttag.Authentication/Nexttag.Authentication.csproj
-  PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
+ PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
 
 jobs:
   check-changes:
@@ -34,7 +28,7 @@ jobs:
   build-and-deploy-authentication_jwt:
     runs-on: ubuntu-latest
     needs: check-changes
-    #if: needs.check-changes.outputs.authentication-jwt == 'true'
+    if: needs.check-changes.outputs.authentication-jwt == 'true'
     steps:
       - uses: actions/checkout@main
 
