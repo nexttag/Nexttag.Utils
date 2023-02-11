@@ -2,6 +2,9 @@
 
 namespace Nexttag.Authentication.Jwt
 {
+    /// <summary>
+    /// Objetos para montagem do token
+    /// </summary>
     public class TokenInfo
     {
         public string Id { get; set; }
