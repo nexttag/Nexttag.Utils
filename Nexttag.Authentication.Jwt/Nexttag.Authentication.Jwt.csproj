@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <Authors>Jonathan Schenker</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Description>Configuracoes do JWT</Description>
     </PropertyGroup>
 
     <ItemGroup>
