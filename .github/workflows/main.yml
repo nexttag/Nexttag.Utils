@@ -12,7 +12,7 @@ env:
   PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
   PATH_AUTHENTICATION: ./Nexttag.Authentication/Nexttag.Authentication.csproj
   PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
-  PATH_AUTHORIZATION: ./Nexttag.Authorization/Nexttag.Authentication.Jwt.csproj
+  PATH_AUTHORIZATION: ./Nexttag.Authorization/Nexttag.Authorization.csproj
   WORKFLOW_KEY: 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
 
 jobs:
