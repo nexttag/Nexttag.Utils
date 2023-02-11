@@ -167,7 +167,7 @@ jobs:
         run: dotnet pack ${{env.PATH_AUTHENTICATION}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k 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 -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
 
   build-and-deploy-authentication_jwt:
     runs-on: ubuntu-latest
