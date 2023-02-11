@@ -1,4 +1,4 @@
-name: Build and deploy Package Authentication.Jwt
+name: Deploy Package Authentication.Jwt
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         with:
           filters: |
             authentication-jwt:
-              - './Nexttag.Authentication.jwt/**' 
+              - 'Nexttag.Authentication.jwt/**' 
 
   build-and-deploy-authentication_jwt:
     runs-on: ubuntu-latest
@@ -49,6 +49,6 @@ jobs:
         run: dotnet pack ${{env.PATH_AUTHENTICATION_JWT}} --configuration Release
 
       - name: Publish
-        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+        run: dotnet nuget push "Nexttag.Authentication.Jwt/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
       
       
