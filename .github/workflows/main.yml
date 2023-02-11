@@ -12,6 +12,7 @@ env:
   PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
   PATH_AUTHENTICATION: ./Nexttag.Authentication/Nexttag.Authentication.csproj
   PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
+  PATH_AUTHORIZATION: ./Nexttag.Authorization/Nexttag.Authentication.Jwt.csproj
   WORKFLOW_KEY: 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
 
 jobs:
@@ -23,6 +24,7 @@ jobs:
       output-application-base: ${{ steps.filter.outputs.application-base }}
       output-cache: ${{ steps.filter.outputs.cache }}
       output-authentication: ${{ steps.filter.outputs.authentication }}
+      output-Authorization: ${{ steps.filter.outputs.Authorization }}
       output-authentication-jwt: ${{ steps.filter.outputs.authentication-jwt }}
     steps:
       - uses: actions/checkout@v2
@@ -43,7 +45,10 @@ jobs:
              - './Nexttag.Cache/**'
             
             authentication:
-              - './Nexttag.Authentication/**' 
+              - './Nexttag.Authentication/**'
+            
+            authorization:
+              - './Nexttag.Authorization/**' 
             
             authentication-jwt:
               - './Nexttag.Authentication.jwt/**' 
@@ -150,7 +155,7 @@ jobs:
   build-and-deploy-authentication:
     runs-on: ubuntu-latest
     needs: check-changes
-    if: ${{ needs.check-changes.outputs.output-authentication == 'false' }}
+    if: ${{ needs.check-changes.outputs.output-authentication == 'TRUE' }}
     steps:
       - uses: actions/checkout@main
 
@@ -174,7 +179,7 @@ jobs:
   build-and-deploy-authentication_jwt:
     runs-on: ubuntu-latest
     needs: check-changes
-    #if: ${{ needs.check-changes.outputs.output-authentication-jwt == 'true' }}
+    if: ${{ needs.check-changes.outputs.output-authentication-jwt == 'true' }}
     steps:
       - uses: actions/checkout@main
 
@@ -194,3 +199,27 @@ jobs:
 
       - name: Publish
         run: dotnet nuget push "Nexttag.Authentication.Jwt/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+
+  build-and-deploy-authorization:
+    runs-on: ubuntu-latest
+    needs: check-changes
+    if: ${{ needs.check-changes.outputs.output-authorization == 'true' }}
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          source-url: https://nuget.pkg.github.com/nexttag/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build with dotnet
+        run: dotnet build ${{env.PATH_AUTHORIZATION}} --configuration Release
+
+      - name: Create the Package
+        run: dotnet pack ${{env.PATH_AUTHORIZATION}} --configuration Release
+
+      - name: Publish
+        run: dotnet nuget push "Nexttag.Authorization/bin/Release/*.nupkg" -k ${{env.WORKFLOW_KEY}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
