@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      './Nexttag.Authentication.jwt/**'
+      'Nexttag.Authentication.jwt/**'
 env:
  PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
 
