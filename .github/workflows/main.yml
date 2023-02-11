@@ -1,0 +1,58 @@
+name: Build and deploy  Package
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PATH_DATABASE_POSTGRES: ./Nexttag.Database.Postgres/Nexttag.Database.Postgres.csproj
+  PATH_DATABASE: ./Nexttag.Database/Nexttag.Database.csproj
+  PATH_APPLICATION_BASE: ./Nexttag.Application.Base/Nexttag.Application.Base.csproj
+  PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
+  PATH_AUTHENTICATION: ./Nexttag.Authentication/Nexttag.Authentication.csproj
+  PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      output-database: ${{ steps.filter.outputs.database }}
+      output-database-postgres: ${{ steps.filter.outputs.database-postgres }}
+      output-application-base: ${{ steps.filter.outputs.application-base }}
+      output-cache: ${{ steps.filter.outputs.cache }}
+      output-auth: ${{ steps.filter.outputs.cache }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            authentication-jwt:
+              - './Nexttag.Authentication.jwt/**' 
+
+  build-and-deploy-authentication_jwt:
+    runs-on: ubuntu-latest
+    needs: check-changes
+    #if: needs.check-changes.outputs.authentication-jwt == 'true'
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          source-url: https://nuget.pkg.github.com/nexttag/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build with dotnet
+        run: dotnet build ${{env.PATH_AUTHENTICATION_JWT}} --configuration Release
+
+      - name: Create the Package
+        run: dotnet pack ${{env.PATH_AUTHENTICATION_JWT}} --configuration Release
+
+      - name: Publish
+        run: dotnet nuget push "Nexttag.Authentication/bin/Release/*.nupkg" -k ${{secrets.WORKFLOW_NUGET_AUTH}} -s https://nuget.pkg.github.com/nexttag/index.json --skip-duplicate
+      
+      
