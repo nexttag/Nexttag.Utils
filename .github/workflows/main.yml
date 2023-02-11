@@ -148,7 +148,7 @@ jobs:
   build-and-deploy-authentication:
     runs-on: ubuntu-latest
     needs: check-changes
-    if: check-changes.steps.filter.outputs.authentication == 'true'
+    if: jobs.check-changes.steps.filter.outputs.authentication == 'true'
     steps:
       - uses: actions/checkout@main
 
