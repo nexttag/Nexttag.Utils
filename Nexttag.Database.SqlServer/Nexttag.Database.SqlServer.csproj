@@ -6,6 +6,9 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jonathan Schenker</Authors>
+        <Version>1.0.1</Version>
+        <RepositoryUrl>https://github.com/orgs/nexttag/packages</RepositoryUrl>
+        <PackageTags>nexttag</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
