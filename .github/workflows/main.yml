@@ -21,15 +21,15 @@ jobs:
   check-changes:
     runs-on: ubuntu-latest
     outputs:
-      output-database: ${{ steps.filter.outputs.database }}
-      output-database-postgres: ${{ steps.filter.outputs.database-postgres }}
+      output-database:            ${{ steps.filter.outputs.database }}
+      output-database-postgres:   ${{ steps.filter.outputs.database-postgres }}
       output-database-sql-server: ${{ steps.filter.outputs.database-sql-server }}
-      output-application-base: ${{ steps.filter.outputs.application-base }}
-      output-cache: ${{ steps.filter.outputs.cache }}
-      output-authentication: ${{ steps.filter.outputs.authentication }}
-      output-Authorization: ${{ steps.filter.outputs.authorization }}
-      output-authentication-jwt: ${{ steps.filter.outputs.authentication-jwt }}
-      output-aws-s3: ${{ steps.filter.outputs.aws-s3 }}
+      output-application-base:    ${{ steps.filter.outputs.application-base }}
+      output-cache:               ${{ steps.filter.outputs.cache }}
+      output-authentication:      ${{ steps.filter.outputs.authentication }}
+      output-Authorization:       ${{ steps.filter.outputs.authorization }}
+      output-authentication-jwt:  ${{ steps.filter.outputs.authentication-jwt }}
+      output-aws-s3:              ${{ steps.filter.outputs.aws-s3 }}
     steps:
       - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
