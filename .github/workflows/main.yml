@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  PATH_DATABASE_POSTGRES: ./Nexttag.Database.Postgres/Nexttag.Database.Postgres.csproj
-  PATH_DATABASE_SQL_SERVER: ./Nexttag.Database.Postgres/Nexttag.Database.SqlServer.csproj
+  PATH_DATABASE_POSTGRES:   ./Nexttag.Database.Postgres/Nexttag.Database.Postgres.csproj
+  PATH_DATABASE_SQL_SERVER: ./Nexttag.Database.SqlServer/Nexttag.Database.SqlServer.csproj
   PATH_DATABASE: ./Nexttag.Database/Nexttag.Database.csproj
   PATH_APPLICATION_BASE: ./Nexttag.Application.Base/Nexttag.Application.Base.csproj
   PATH_CACHE: ./Nexttag.Cache/Nexttag.Cache.csproj
