@@ -7,8 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Nexttag.Database.Configuration;
 using Npgsql;
 
-namespace Nexttag.Database.Postgres
-{
+namespace Nexttag.Database.Postgres;
+
     public static class ServiceCollectionExtensions
     {
         public static void AddPosgressDataBase(this IServiceCollection serviceCollection, string connectionString)
@@ -38,4 +38,3 @@ namespace Nexttag.Database.Postgres
             });
         }
     }
-}
