@@ -2,15 +2,13 @@ using System.Data;
 using Dapper;
 using Dapper.FluentMap;
 using Dapper.FluentMap.Dommel;
-using DbUp.Engine.Transactions;
 using Dommel;
-using Microsoft.Data.SqlClient;
+using Nexttag.Database.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Data.SqlClient;
 using Nexttag.Database.Configuration;
 
-//using Npgsql;
-
-namespace Nexttag.Database.SqlServer
+namespace Nexttag.Database.Postgres
 {
     public static class ServiceCollectionExtensions
     {
@@ -26,10 +24,6 @@ namespace Nexttag.Database.SqlServer
                     DommelMapper.SetColumnNameResolver(new SnakeCaseColumnNameResolver());
                 });
             }
-
-            //serviceCollection.AddScoped<IDbConnection>((option) => { return new NpgsqlConnection(connectionString); });
-            //serviceCollection.AddSingleton(typeof(IConnectionFactory), s => new PostgreSQLConnectionFactory(connectionString));
-            //serviceCollection.AddSingleton(typeof(IDbParameterBuilder), s => new PostegreSQLBuilderParameters());
             
             serviceCollection.AddScoped<IDbConnection>((option) => { return new SqlConnection(connectionString); });
             serviceCollection.AddSingleton(typeof(IConnectionFactory), s => new SqlServerConnectionFactory(connectionString));

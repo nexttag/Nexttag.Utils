@@ -1,5 +1,6 @@
 using System.Dynamic;
 using Dapper;
+using Nexttag.Database;
 
 namespace Nexttag.Database.SqlServer
 {
@@ -33,14 +34,7 @@ namespace Nexttag.Database.SqlServer
 
         public string BuildOrderClause(string orderBy)
         {
-            if (string.IsNullOrEmpty(orderBy))
-            {
-                return string.Empty;
-            }
-            else
-            {
-                return $"ORDER BY {orderBy}";
-            }
+            return string.IsNullOrEmpty(orderBy) ? string.Empty : $" ORDER BY {orderBy}";
         }
 
         public string BuildPaginationClause(PaginationContext pagination)
@@ -51,7 +45,8 @@ namespace Nexttag.Database.SqlServer
             }
             else
             {
-                return $"LIMIT {pagination.Size} OFFSET {pagination.Size * (pagination.Page - 1)}";
+                //return $"LIMIT {pagination.Size} OFFSET {pagination.Size * (pagination.Page - 1)}";
+                return $" OFFSET {pagination.Page} ROWS FETCH NEXT {pagination.Size * ((pagination.Page - 1 == 0 ? 1 : pagination.Page - 1 ))} ROWS ONLY";
             }
         }
 
