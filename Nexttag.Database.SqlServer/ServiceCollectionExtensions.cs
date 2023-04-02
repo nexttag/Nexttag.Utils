@@ -3,13 +3,12 @@ using Dapper;
 using Dapper.FluentMap;
 using Dapper.FluentMap.Dommel;
 using Dommel;
-using Nexttag.Database.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Data.SqlClient;
 using Nexttag.Database.Configuration;
 
-namespace Nexttag.Database.Postgres
-{
+namespace Nexttag.Database.SqlServer;
+
     public static class ServiceCollectionExtensions
     {
         public static void AddSqlServerDataBase(this IServiceCollection serviceCollection, string connectionString)
@@ -38,4 +37,3 @@ namespace Nexttag.Database.Postgres
             });
         }
     }
-}
