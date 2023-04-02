@@ -15,7 +15,7 @@ env:
   PATH_AUTHENTICATION_JWT: ./Nexttag.Authentication.Jwt/Nexttag.Authentication.Jwt.csproj
   PATH_AUTHORIZATION: ./Nexttag.Authorization/Nexttag.Authorization.csproj
   PATH_AWS_S3: ./Nexttag.Authorization/Nexttag.Aws.S3.csproj
-  WORKFLOW_KEY: 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
+  WORKFLOW_KEY: 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
 
 jobs:
   check-changes:
@@ -266,7 +266,7 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '7.0.x'
           source-url: https://nuget.pkg.github.com/nexttag/index.json
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
