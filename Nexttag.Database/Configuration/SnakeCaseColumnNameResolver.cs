@@ -11,9 +11,11 @@ namespace Nexttag.Database.Configuration
             var isAllUpper = columnName.All(c => char.IsUpper(c));
             if (isAllUpper)
             {
-                return property.Name;
+                return property.Name.ToLower();
             }
-            return string.Concat(columnName.Where(c => c != '_').Select((c, i) => i > 0 && char.IsUpper(c) ? "_" + c.ToString() : c.ToString()));
+
+            return string.Concat(columnName.Where(c => c != '_')
+                .Select((c, i) => i > 0 && char.IsUpper(c) ? "_" + c.ToString() : c.ToString())).ToLower();
         }
     }
 }

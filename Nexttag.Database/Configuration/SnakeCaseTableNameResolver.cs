@@ -12,7 +12,8 @@ namespace Nexttag.Database.Configuration
             {
                 return type.Name.ToLower();
             }
-            return string.Concat(tableName.Where(c => c != '_').Select((c, i) => i > 0 && char.IsUpper(c) ? "_" + c.ToString() : c.ToString())).ToLower();
+            
+            return string.Concat(tableName.Where(c => c != '_').Select((c, i) => i > 0 && char.IsUpper(c) ? "_" + c.ToString().ToLower() : c.ToString())).ToLower();
         }
     }
 }

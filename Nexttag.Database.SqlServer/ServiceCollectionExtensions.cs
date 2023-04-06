@@ -1,11 +1,11 @@
-using System.Data;
 using Dapper;
 using Dapper.FluentMap;
 using Dapper.FluentMap.Dommel;
 using Dommel;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Data.SqlClient;
 using Nexttag.Database.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace Nexttag.Database.SqlServer;
 
@@ -13,7 +13,7 @@ namespace Nexttag.Database.SqlServer;
     {
         public static void AddSqlServerDataBase(this IServiceCollection serviceCollection, string connectionString)
         {
-            if (FluentMapper.EntityMaps.Count == 0 && FluentMapper.TypeConventions.IsEmpty)
+            if (FluentMapper.EntityMaps.IsEmpty && FluentMapper.TypeConventions.IsEmpty)
             {
                 FluentMapper.Initialize(config =>
                 {
@@ -21,6 +21,7 @@ namespace Nexttag.Database.SqlServer;
                     config.ForDommel();
                     DommelMapper.SetTableNameResolver(new SnakeCaseTableNameResolver());
                     DommelMapper.SetColumnNameResolver(new SnakeCaseColumnNameResolver());
+                
                 });
             }
             

@@ -52,7 +52,7 @@ namespace Nexttag.Database.SqlServer
 
         public DynamicParameters BuildParameters(IEnumerable<IFilter> filters)
         {
-            DynamicParameters parameters = new DynamicParameters();
+            var parameters = new DynamicParameters();
             if (filters == null)
                 return null;
 

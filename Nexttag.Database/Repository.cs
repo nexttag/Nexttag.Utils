@@ -113,7 +113,7 @@ namespace Nexttag.Database
         {
             string query = _dbContext.BuildQuery(baseQuery, orderBy, pagination);
             var results = default(IEnumerable<T>);
-            _logger.LogDebug($"[Edelivery.Database] Compiled Query: {query}");
+            _logger.LogDebug($"[Nexttag.Database] Compiled Query: {query}");
             if (pagination == null || string.IsNullOrEmpty(pagination.Query))
             {
                 results = _dbContext.Connection.Query<T>(

@@ -6,9 +6,11 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jonathan Schenker</Authors>
-        <Version>1.0.2</Version>
+        <Version>1.0.4.4-alfa</Version>
         <RepositoryUrl>https://github.com/orgs/nexttag/packages</RepositoryUrl>
         <PackageTags>nexttag</PackageTags>
+        <Company>Nexttag</Company>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,6 +19,7 @@
       <PackageReference Include="Dapper.FluentMap.Dommel" Version="2.0.0" />
       <PackageReference Include="dbup-core" Version="4.6.3" />
       <PackageReference Include="dbup-sqlserver" Version="4.6.0" />
+      <PackageReference Include="Dommel" Version="3.0.0" />
       <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />

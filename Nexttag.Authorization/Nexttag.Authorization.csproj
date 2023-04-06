@@ -9,7 +9,7 @@
         <Description>Biblioteca de configuracoes para Authorizaracao </Description>
         <RepositoryUrl>https://github.com/nexttag/Nexttag.Utils</RepositoryUrl>
         <PackageTags>Authorization</PackageTags>
-        <RootNamespace>Edelivery.Authorization</RootNamespace>
+        <RootNamespace>Nexttag.Authorization</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
